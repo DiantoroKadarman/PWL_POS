@@ -1,66 +1,68 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Jawaban Pertanyaan Jobsheet 3
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+### 1. Pada Praktikum 1 - Tahap 5, apakah fungsi dari APP_KEY pada file setting .env Laravel?<br>
 
-## About Laravel
+-   Jawab : APP_KEY pada file setting .env Laravel digunakan sebagai kunci enkripsi dan penandatanganan data yang sensitif, seperti sesi pengguna. Fungsi ini penting untuk keamanan aplikasi.<br>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### 2. Pada Praktikum 1, bagaimana kita men-generate nilai untuk APP_KEY?<br>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+-   Jawab : nilai untuk APP_KEY dapat di-generate menggunakan perintah artisan php artisan key:generate.<br>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 3. Pada Praktikum 2.1 - Tahap 1, secara default Laravel memiliki berapa file migrasi?
 
-## Learning Laravel
+dan untuk apa saja file migrasi tersebut?<br>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+-   Jawab : secara default Laravel memiliki dua file migrasi, yaitu create_users_table.php dan create_password_resets_table.php. File migrasi ini digunakan untuk membuat tabel pengguna dan tabel reset password.<br>
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 4. Secara default, file migrasi terdapat kode $table->timestamps();, apa tujuan/output
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+dari fungsi tersebut?<br>
 
-## Laravel Sponsors
+-   Jawab : Kode $table->timestamps(); pada file migrasi menambahkan dua kolom, yaitu created_at dan updated_at, yang secara otomatis akan diisi waktu ketika record dibuat dan diupdate.<br>
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 5. Pada File Migrasi, terdapat fungsi $table->id(); Tipe data apa yang dihasilkan dari
 
-### Premium Partners
+fungsi tersebut?<br>
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+-   Jawab : Fungsi $table->id(); pada file migrasi menghasilkan tipe data kolom primary key yang bertipe big integer dengan sifat auto-increment.<br>
 
-## Contributing
+### 6. Apa bedanya hasil migrasi pada table m_level, antara menggunakan $table->id();
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+dengan menggunakan $table->id('level_id'); ?<br>
 
-## Code of Conduct
+-   Jawab : Hasil migrasi pada tabel m_level menggunakan $table->id(); dan $table->id('level_id'); tidak berbeda secara substansial. Perbedaan terletak pada penamaan kolom primary key, di mana menggunakan $table->id('level_id'); memberikan nama kolom primary key khusus.<br>
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 7. Pada migration, Fungsi ->unique() digunakan untuk apa?<br>
 
-## Security Vulnerabilities
+-   Jawab : Fungsi ->unique() pada migration digunakan untuk menentukan bahwa nilai pada kolom tersebut harus unik di dalam tabel.<br>
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 8. Pada Praktikum 2.2 - Tahap 2, kenapa kolom level_id pada tabel m_user
 
-## License
+menggunakan $tabel->unsignedBigInteger('level_id'), sedangkan kolom level_id
+pada tabel m_level menggunakan $tabel->id('level_id') ?<br>
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+-   Jawab : perbedaan penggunaan $tabel->unsignedBigInteger('level_id') dan $tabel->id('level_id') terletak pada jenis kolom yang dihasilkan. Yang pertama menghasilkan kolom big integer yang tidak auto-increment, sementara yang kedua menghasilkan primary key dengan nama kolom 'level_id'.<br>
+
+### 9. Pada Praktikum 3 - Tahap 6, apa tujuan dari Class Hash? dan apa maksud dari kode
+
+program Hash::make('1234');?<br>
+
+-   Jawab : Class Hash pada Laravel digunakan untuk melakukan hashing, yaitu mengacak nilai teks, seperti password, untuk meningkatkan keamanan. Kode program Hash::make('1234'); digunakan untuk menghasilkan hash dari string '1234'.<br>
+
+### 10. Pada Praktikum 4 - Tahap 3/5/7, pada query builder terdapat tanda tanya (?), apa
+
+kegunaan dari tanda tanya (?) tersebut?<br>
+
+-   Jawab : tanda tanya (?) pada query builder digunakan sebagai placeholder untuk parameter yang akan di-bind nanti. Ini membantu mencegah SQL injection dan memungkinkan penggunaan nilai yang aman dalam query.<br>
+
+### 11. Pada Praktikum 6 - Tahap 3, apa tujuan penulisan kode protected $table =
+
+‘m_user’; dan protected $primaryKey = ‘user_id’; ?<br>
+
+-   Jawab : kode protected $table = 'm_user'; dan protected $primaryKey = 'user_id'; digunakan untuk menentukan nama tabel dan primary key yang digunakan oleh model tersebut.<br>
+
+### 12. Menurut kalian, lebih mudah menggunakan mana dalam melakukan operasi CRUD ke
+
+database (DB Facade / Query Builder / Eloquent ORM) ? jelaskan<br>
+
+-   Jawab : Pilihan antara DB Facade, Query Builder, dan Eloquent ORM tergantung pada kebutuhan dan preferensi pengembang. Eloquent ORM sering dianggap lebih mudah dan ekspresif karena memanfaatkan model dan relasi, sementara DB Facade dan Query Builder memberikan lebih banyak kontrol langsung atas kueri SQL. Pilihan tergantung pada kompleksitas proyek dan kebutuhan pengembangan.<br>
