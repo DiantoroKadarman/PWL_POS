@@ -1,11 +1,15 @@
 # JOBSHEET 04
+
 MODEL dan ELOQUENT ORM
-> Nama : Syahrul Bhudi Ferdiansyah <br>
-> NIM  : 2241720167 <br>
-> Kelas : TI-2F
+
+Diantoro Kadarman <br>
+2241720084 <br>
+TI-2F
 
 ### Praktikum 1 - $fillable:
+
 1. Buka file model dengan nama UserModel.php dan tambahkan $fillable seperti gambar di bawah ini
+
 ```php
 <?php
 
@@ -24,8 +28,10 @@ class User extends Model
     protected $fillable = ['level_id', 'username', 'nama', 'password'];
 }
 ```
+
 2. Buka file controller dengan nama UserController.php dan ubah script untuk
-menambahkan data baru seperti gambar di bawah ini
+   menambahkan data baru seperti gambar di bawah ini
+
 ```php
 <?php
 
@@ -51,10 +57,11 @@ class UserController extends Controller
     }
 }
 ```
+
 3. Simpan kode program Langkah 1 dan 2, dan jalankan perintah web server. Kemudian jalankan link localhostPWL_POS/public/user pada browser dan amati apa yang terjadi<br>
-![alt text](/public/ss/us.png)<br>
-4. Ubah file model UserModel.php seperti pada gambar di bawah ini pada bagian
-$fillable
+   ![alt text](/public/ss/us.png)<br>
+4. Ubah file model UserModel.php seperti pada gambar di bawah ini pada bagian $fillable
+
 ```php
 <?php
 
@@ -75,6 +82,7 @@ class User extends Model
 ```
 
 5. Ubah kembali file controller UserController.php seperti pada gambar di bawah hanya bagian array pada $data
+
 ```php
 <?php
 
@@ -101,20 +109,22 @@ class UserController extends Controller
 }
 
 ```
+
 6. Simpan kode program Langkah 4 dan 5. Kemudian jalankan pada browser dan amati apa yang terjadi <br>
-![alt text](/public/ss/er.png)<br>
-> Setelah dilakukan modifikasi di UserController.php akan membuat error seperti diatas, karena $fillable ‘password’ dihilangkan dan kita melakukan insert data yang memiliki ‘password’ sehingga terjadi error. Perlu ditambahkan $fillable ‘password’ lagi agar bisa menambahkan data. Berikut adalah hasil akhirnya: <br>
-![alt text](/public/ss/d.png)<br>
-2. $guarded
-Kebalikan dari $fillable adalah $guarded. Semua kolom yang kita tambahkan ke $guarded
-akan diabaikan oleh Eloquent ketika kita melakukan insert/update. Secara default $guarded
-isinya array("*"), yang berarti semua atribut tidak bisa diset melalui mass assignment
-(jabarkan istilah ini). <br>
->Mass assignment adalah proses ketika Anda mengatur nilai atribut model menggunakan array asosiatif, seperti saat menggunakan create() atau update() method pada model.
+   ![alt text](/public/ss/er.png)<br>
+    > Setelah dilakukan modifikasi di UserController.php akan membuat error seperti diatas, karena $fillable ‘password’ dihilangkan dan kita melakukan insert data yang memiliki ‘password’ sehingga terjadi error. Perlu ditambahkan $fillable ‘password’ lagi agar bisa menambahkan data. Berikut adalah hasil akhirnya: <br> > ![alt text](/public/ss/d.png)<br>
+7. $guarded
+   Kebalikan dari $fillable adalah $guarded. Semua kolom yang kita tambahkan ke $guarded
+   akan diabaikan oleh Eloquent ketika kita melakukan insert/update. Secara default $guarded
+   isinya array("\*"), yang berarti semua atribut tidak bisa diset melalui mass assignment
+   (jabarkan istilah ini). <br>
+    > Mass assignment adalah proses ketika Anda mengatur nilai atribut model menggunakan array asosiatif, seperti saat menggunakan create() atau update() method pada model.
 
 ### Praktikum 2.1 – Retrieving Single Models
+
 1. Buka file controller dengan nama UserController.php dan ubah script seperti gambar
-di bawah ini
+   di bawah ini
+
 ```php
 <?php
 
@@ -132,7 +142,9 @@ class UserController extends Controller
     }
 }
 ```
+
 2. Buka file view dengan nama user.blade.php dan ubah script seperti gambar di bawah ini
+
 ```php
 <tr>
     <td>{{$data->user_id}}</td>
@@ -141,12 +153,14 @@ class UserController extends Controller
     <td>{{$data->level_id}}</td>
 </tr>
 ```
+
 3. amati apa yang terjadi dan beri penjelasan
-dalam laporan <br>
-![alt text](/public/ss/dt.png)<br>
->Perbedaannya adalah $user = UserModel::find(1); Akan mencari user dengan ID 1
+   dalam laporan <br>
+   ![alt text](/public/ss/dt.png)<br>
+    > Perbedaannya adalah $user = UserModel::find(1); Akan mencari user dengan ID 1
 4. Ubah file controller dengan nama UserController.php dan ubah script seperti gambar
-di bawah ini
+   di bawah ini
+
 ```php
 <?php
 
@@ -164,12 +178,15 @@ class UserController extends Controller
     }
 }
 ```
+
 5. amati apa yang terjadi dan beri penjelasan dalam laporan <br>
-![alt text](/public/ss/dt.png)<br>
-> $user = UserModel::where('level_id',1)->first(); Akan mencari user sesuai kriteria yang ditentukan karena menggunakan where. Setelah itu jika ada beberapa record akan dipilih yang pertama karena menggunakan first.
+   ![alt text](/public/ss/dt.png)<br>
+
+    > $user = UserModel::where('level_id',1)->first(); Akan mencari user sesuai kriteria yang ditentukan karena menggunakan where. Setelah itu jika ada beberapa record akan dipilih yang pertama karena menggunakan first.
 
 6. Ubah file controller dengan nama UserController.php dan ubah script seperti gambar
-di bawah ini
+   di bawah ini
+
 ```php
 <?php
 
@@ -187,10 +204,12 @@ class UserController extends Controller
     }
 }
 ```
+
 7. amati apa yang terjadi dan beri penjelasan dalam laporan<br>
-![alt text](/public/ss/dt.png)<br>
-> $user = UserModel::firstWhere('level_id',1); Mirip dengan cara sebelumnya, bedanya cara ini akan langsung mencari record pertama yang memenuhi kondisi karena menggunakan gabungan first dan Where.
+   ![alt text](/public/ss/dt.png)<br>
+    > $user = UserModel::firstWhere('level_id',1); Mirip dengan cara sebelumnya, bedanya cara ini akan langsung mencari record pertama yang memenuhi kondisi karena menggunakan gabungan first dan Where.
 8. Ubah file controller dengan nama UserController.php dan ubah script seperti gambar di bawah ini
+
 ```php
 <?php
 
@@ -211,10 +230,12 @@ class UserController extends Controller
     }
 }
 ```
+
 9. amati apa yang terjadi dan beri penjelasan dalam laporan<br>
-![alt text](/public/ss/d1.png)<br>
->Hanya muncul username dan nama karena kita hanya memberi perintah findOr untuk mencari ‘username’ dan ‘nama’ yang memiliki ID bernilai 1. Jika tidak ditemukan akan memunculkan error kode 404.
+   ![alt text](/public/ss/d1.png)<br>
+    > Hanya muncul username dan nama karena kita hanya memberi perintah findOr untuk mencari ‘username’ dan ‘nama’ yang memiliki ID bernilai 1. Jika tidak ditemukan akan memunculkan error kode 404.
 10. Ubah file controller dengan nama UserController.php dan ubah script seperti gambar di bawah ini
+
 ```php
 <?php
 
@@ -235,13 +256,16 @@ class UserController extends Controller
     }
 }
 ```
+
 11. amati apa yang terjadi dan beri penjelasan dalam laporan <br>
-![alt text](/public/ss/4.png)<br>
->Akan menghasilkan error 404 karena data dengan id 20 tidak ditemukan
+    ![alt text](/public/ss/4.png)<br>
+    > Akan menghasilkan error 404 karena data dengan id 20 tidak ditemukan
 
 ### Praktikum 2.2 – Not Found Exceptions
+
 1. Ubah file controller dengan nama UserController.php dan ubah script seperti gambar
-di bawah ini
+   di bawah ini
+
 ```php
 <?php
 
@@ -260,12 +284,14 @@ class UserController extends Controller
     }
 }
 ```
+
 2. amati apa yang
-terjadi dan beri penjelasan dalam laporan <br>
-![alt text](/public/ss/d2.png)
->Dijalankan findOrFail(1) yang akan mencari record berdasarkan primary keynya, di kasus ini 1. Jika tidak ditemukan atau fail akan return page 404.
+   terjadi dan beri penjelasan dalam laporan <br>
+   ![alt text](/public/ss/d2.png)
+    > Dijalankan findOrFail(1) yang akan mencari record berdasarkan primary keynya, di kasus ini 1. Jika tidak ditemukan atau fail akan return page 404.
 3. Ubah file controller dengan nama UserController.php dan ubah script seperti gambar
-di bawah ini
+   di bawah ini
+
 ```php
 <?php
 
@@ -284,13 +310,16 @@ class UserController extends Controller
     }
 }
 ```
+
 4. amati apa yang
-terjadi dan beri penjelasan dalam laporan <br>
-![alt text](/public/ss/4.png)<br>
->Setelah dijalankan akan menampilkan error 404 karena menggunakan firstOrFail. Metode ini akan mencari record pertama apakah cocok dengan kondisi, jika tidak akan return error. Di kasus ini record pertama bukanlah manager9 sehingga error terjadi.
+   terjadi dan beri penjelasan dalam laporan <br>
+   ![alt text](/public/ss/4.png)<br>
+    > Setelah dijalankan akan menampilkan error 404 karena menggunakan firstOrFail. Metode ini akan mencari record pertama apakah cocok dengan kondisi, jika tidak akan return error. Di kasus ini record pertama bukanlah manager9 sehingga error terjadi.
 
 ### Praktikum 2.3 – Retreiving Aggregrates
+
 1.Ubah file controller dengan nama UserController.php dan ubah script seperti gambar di bawah ini
+
 ```php
 <?php
 
@@ -310,13 +339,16 @@ class UserController extends Controller
     }
 }
 ```
+
 2. Hasil
-<br>![alt text](/public/ss/h.png)<br>
->data tampil sesuai  dengan jumlah yg ada di database
+   <br>![alt text](/public/ss/h.png)<br>
+    > data tampil sesuai dengan jumlah yg ada di database
 
 ### Praktikum 2.4 – Retreiving or Creating Models
+
 1. Ubah file controller dengan nama UserController.php dan ubah script seperti gambar
-di bawah ini
+   di bawah ini
+
 ```php
 <?php
 
@@ -338,8 +370,10 @@ class UserController extends Controller
     }
 }
 ```
+
 2. Ubah kembali file view dengan nama user.blade.php dan ubah script seperti gambar di
-bawah ini
+   bawah ini
+
 ```php
 <!DOCTYPE html>
 <html lang="en">
@@ -368,13 +402,16 @@ bawah ini
 </body>
 </html>
 ```
+
 3. amati
-apa yang terjadi dan beri penjelasan dalam laporan <br>
-![alt text](/public/ss/m.png)<br>
-> Tidak ada perubahan pada database karena data sudah ketemu, sehingga tidak perlu create.
+   apa yang terjadi dan beri penjelasan dalam laporan <br>
+   ![alt text](/public/ss/m.png)<br>
+
+    > Tidak ada perubahan pada database karena data sudah ketemu, sehingga tidak perlu create.
 
 4. Ubah file controller dengan nama UserController.php dan ubah script seperti gambar
-di bawah ini <br>
+   di bawah ini <br>
+
 ```php
 <?php
 
@@ -398,15 +435,16 @@ class UserController extends Controller
     }
 }
 ```
+
 5. Simpan kode program Langkah 4. Kemudian jalankan pada browser dan amati apa yang
-terjadi dan cek juga pada phpMyAdmin pada tabel m_user serta beri penjelasan dalam
-laporan <br>
-![alt text](/public/ss/22.png)<br>
-![alt text](/public/ss/db.png)<br>
->Akan dibuat record baru dikarenakan find tidak bisa ditemukan
+   terjadi dan cek juga pada phpMyAdmin pada tabel m_user serta beri penjelasan dalam laporan <br>
+   ![alt text](/public/ss/22.png)<br>
+
+    > Akan dibuat record baru dikarenakan find tidak bisa ditemukan
 
 6. Ubah file controller dengan nama UserController.php dan ubah script seperti gambar
-di bawah ini
+   di bawah ini
+
 ```php
 <?php
 
@@ -428,13 +466,16 @@ class UserController extends Controller
     }
 }
 ```
+
 7. Simpan kode program Langkah 6. Kemudian jalankan pada browser dan amati apa yang
-terjadi dan beri penjelasan dalam laporan <br>
-![alt text](/public/ss/m.png)<br>
-> Karena data ditemukan maka tidak akan membuat sebuah record dan tidak harus di save()
+   terjadi dan beri penjelasan dalam laporan <br>
+   ![alt text](/public/ss/m.png)<br>
+
+    > Karena data ditemukan maka tidak akan membuat sebuah record dan tidak harus di save()
 
 8. Ubah file controller dengan nama UserController.php dan ubah script seperti gambar
-di bawah ini
+   di bawah ini
+
 ```php
 <?php
 
@@ -458,14 +499,15 @@ class UserController extends Controller
     }
 }
 ```
+
 9. Simpan kode program Langkah 8. Kemudian jalankan pada browser dan amati apa yang
-terjadi dan cek juga pada phpMyAdmin pada tabel m_user serta beri penjelasan dalam
-laporan <br>
-![alt text](/public/ss/33.png)<br>
-![alt text](/public/ss/db.png)<br>
-> data akan tampil tetapi tidak disimpan kedalam database
+   terjadi dan cek juga pada phpMyAdmin pada tabel m_user serta beri penjelasan dalam
+   laporan <br>
+   ![alt text](/public/ss/33.png)<br>
+    > data akan tampil tetapi tidak disimpan kedalam database
 10. Ubah file controller dengan nama UserController.php dan ubah script seperti gambar
-di bawah ini
+    di bawah ini
+
 ```php
 <?php
 
@@ -491,16 +533,18 @@ class UserController extends Controller
     }
 }
 ```
+
 11. Simpan kode program Langkah 9. Kemudian jalankan pada browser dan amati apa yang
-terjadi dan cek juga pada phpMyAdmin pada tabel m_user serta beri penjelasan dalam
-laporan <br>
-![alt text](/public/ss/32.png)<br>
-![alt text](/public/ss/dbb.png)<br>
-> Hasil seperti diatas, terdapat ID dan ada record baru di database. Dikarenakan fungsi save() digunakan untuk membuat record baru.
+    terjadi dan cek juga pada phpMyAdmin pada tabel m_user serta beri penjelasan dalam
+    laporan <br>
+    ![alt text](/public/ss/32.png)<br>
+    > Hasil seperti diatas, terdapat ID dan ada record baru di database. Dikarenakan fungsi save() digunakan untuk membuat record baru.
 
 ### Praktikum 2.5 – Attribute Changes
+
 1. Ubah file controller dengan nama UserController.php dan ubah script seperti gambar
-di bawah ini
+   di bawah ini
+
 ```php
 <?php
 
@@ -542,14 +586,16 @@ class UserController extends Controller
     }
 }
 ```
+
 2. Simpan kode program Langkah 1. Kemudian jalankan pada browser dan amati apa yang
-terjadi dan beri penjelasan dalam laporan <br>
-![alt text](/public/ss/56.png)<br>
->Pada hasil run diatas, dilakukan penambahan data dan hasilnya berhasil sehingga bisa ditampilkan. Mengapa hasil pengecekan tidak muncul? Dikarenakan tidak adanya dump and die untuk menampilkan.<br>
-![alt text](/public/ss/dd.png)<br>
->Terdapat dd($user->isDirty()); yang akan mengecek status $user apakah ada data yang berubah
+   terjadi dan beri penjelasan dalam laporan <br>
+   ![alt text](/public/ss/56.png)<br>
+
+    > Pada hasil run diatas, dilakukan penambahan data dan hasilnya berhasil sehingga bisa ditampilkan. Mengapa hasil pengecekan tidak muncul? Dikarenakan tidak adanya dump and die untuk menampilkan.<br> > ![alt text](/public/ss/dd.png)<br>
+    > Terdapat dd($user->isDirty()); yang akan mengecek status $user apakah ada data yang berubah
 
 3. Ubah file controller dengan nama UserController.php dan ubah script seperti gambar di bawah ini
+
 ```php
 <?php
 
@@ -581,17 +627,19 @@ class UserController extends Controller
     }
 }
 ```
-4. Simpan kode program Langkah 3. Kemudian jalankan pada browser dan amati apa yang
-terjadi dan beri penjelasan dalam laporan <br>
-![alt text](/public/ss/usr.png)<br>
->Terdapat dd($user->wasChanged(['nama','username'])); yang akan mengecek status $user apakah ada data yang berubah pada bagian ‘nama’ dan ‘username’,menampilkan hasilnya dan akan menghentikan progam (dump and die).<br>
-![alt text](/public/ss/usr2.png)<br>
-> Pada hasil run diatas dilakukan penambahan data, hasilnya berhasil sehingga bisa ditampilkan. Hasil pengecekan tidak muncuk karena tidak adanya dump and die untuk menampilkan hasil.
 
->Sedangkan perbedaan isDirty dan wasChanged sendiri adalah kondisi dijalankannya. isDirty akan melakukan pengecekan sebelum dilakukan save. Sedangkan wasChanged akan melakukan pengecekan setelah dilakukan save.
+4. Simpan kode program Langkah 3. Kemudian jalankan pada browser dan amati apa yang
+   terjadi dan beri penjelasan dalam laporan <br>
+   ![alt text](/public/ss/usr.png)<br>
+    > Terdapat dd($user->wasChanged(['nama','username'])); yang akan mengecek status $user apakah ada data yang berubah pada bagian ‘nama’ dan ‘username’,menampilkan hasilnya dan akan menghentikan progam (dump and die).<br> > ![alt text](/public/ss/usr2.png)<br>
+    > Pada hasil run diatas dilakukan penambahan data, hasilnya berhasil sehingga bisa ditampilkan. Hasil pengecekan tidak muncuk karena tidak adanya dump and die untuk menampilkan hasil.
+
+> Sedangkan perbedaan isDirty dan wasChanged sendiri adalah kondisi dijalankannya. isDirty akan melakukan pengecekan sebelum dilakukan save. Sedangkan wasChanged akan melakukan pengecekan setelah dilakukan save.
 
 ### Praktikum 2.6 – Create, Read, Update, Delete (CRUD)
+
 1. Buka file view pada user.blade.php dan buat scritpnya menjadi seperti di bawah ini
+
 ```php
 <!DOCTYPE html>
 <html lang="en">
@@ -627,8 +675,10 @@ terjadi dan beri penjelasan dalam laporan <br>
 </body>
 </html>
 ```
+
 2. Buka file controller pada UserController.php dan buat scriptnya untuk read menjadi
-seperti di bawah ini
+   seperti di bawah ini
+
 ```php
 <?php
 
@@ -647,12 +697,14 @@ class UserController extends Controller
     }
 }
 ```
+
 3. Hasil<br>
-![alt text](/public/ss/cr.png)<br>
-> Yang terjadi adalah data user tampil semua
+   ![alt text](/public/ss/cr.png)<br>
+    > Yang terjadi adalah data user tampil semua
 4. Langkah berikutnya membuat create atau tambah data user dengan cara bikin file baru
-pada view dengan nama user_tambah.blade.php dan buat scriptnya menjadi seperti di
-bawah ini
+   pada view dengan nama user_tambah.blade.php dan buat scriptnya menjadi seperti di
+   bawah ini
+
 ```php
 <!DOCTYPE html>
 <html lang="en">
@@ -693,14 +745,18 @@ bawah ini
 
 </html>
 ```
+
 5. Tambahkan script pada routes dengan nama file web.php. Tambahkan seperti gambar di
-bawah ini
+   bawah ini
+
 ```php
 Route::get('/user/tambah', [UserController::class, 'tambah']);
 ```
+
 6. Tambahkan script pada controller dengan nama file UserController.php. Tambahkan
-script dalam class dan buat method baru dengan nama tambah dan diletakan di bawah
-method index seperti gambar di bawah ini
+   script dalam class dan buat method baru dengan nama tambah dan diletakan di bawah
+   method index seperti gambar di bawah ini
+
 ```php
 <?php
 
@@ -723,21 +779,25 @@ class UserController extends Controller
     }
 }
 ```
+
 7. Simpan kode program Langkah 4 s/d 6. Kemudian jalankan pada browser dan klik link
-“+ Tambah User” amati apa yang terjadi dan beri penjelasan dalam laporan <br>
-![alt text](/public/ss/ad.png)<br>
-![alt text](/public/ss/nt.png)<br>
->Setelah mengisi form dan klik simpan, akan terjadi error karena belum ditambahkan fungsi untuk menyimpan inputan dan belum ada routing juga.
+   “+ Tambah User” amati apa yang terjadi dan beri penjelasan dalam laporan <br>
+   ![alt text](/public/ss/ad.png)<br>
+   ![alt text](/public/ss/nt.png)<br>
+
+    > Setelah mengisi form dan klik simpan, akan terjadi error karena belum ditambahkan fungsi untuk menyimpan inputan dan belum ada routing juga.
 
 8. Tambahkan script pada routes dengan nama file web.php. Tambahkan seperti gambar di
-bawah ini
+   bawah ini
+
 ```php
 Route::post('/user/tambah_simpan', [UserController::class, 'tambah_simpan']);
 ```
 
 9. Tambahkan script pada controller dengan nama file UserController.php. Tambahkan
-script dalam class dan buat method baru dengan nama tambah_simpan dan diletakan di
-bawah method tambah seperti gambar di bawah ini
+   script dalam class dan buat method baru dengan nama tambah_simpan dan diletakan di
+   bawah method tambah seperti gambar di bawah ini
+
 ```php
 <?php
 
@@ -775,17 +835,19 @@ class UserController extends Controller
 ```
 
 10. Simpan kode program Langkah 8 dan 9. Kemudian jalankan link
-localhost:8000/user/tambah atau localhost/PWL_POS/public/user/tambah pada
-browser dan input formnya dan simpan, kemudian amati apa yang terjadi dan beri
-penjelasan dalam laporan <br>
-![alt text](/public/ss/tb.png)<br>
-![alt text](/public/ss/mn.png)<br>
-![alt text](/public/ss/hs.png)<br>
-> Hasil nya adalah data yang telah dimasukkan kedalam form bisa disimpan kedalam database dan ditampilkan kembali ke view. Data form dikirim ke UserController lalu ditangkap oleh variabel $request yang berada dalam fungsi tambah_simpan lalu didalam fungsi tersebut akan dilakukan create data kedalam database
+    localhost:8000/user/tambah atau localhost/PWL_POS/public/user/tambah pada
+    browser dan input formnya dan simpan, kemudian amati apa yang terjadi dan beri
+    penjelasan dalam laporan <br>
+    ![alt text](/public/ss/tb.png)<br>
+    ![alt text](/public/ss/mn.png)<br>
+    ![alt text](/public/ss/hs.png)<br>
+
+    > Hasil nya adalah data yang telah dimasukkan kedalam form bisa disimpan kedalam database dan ditampilkan kembali ke view. Data form dikirim ke UserController lalu ditangkap oleh variabel $request yang berada dalam fungsi tambah_simpan lalu didalam fungsi tersebut akan dilakukan create data kedalam database
 
 11. Langkah berikutnya membuat update atau ubah data user dengan cara bikin file baru
-pada view dengan nama user_ubah.blade.php dan buat scriptnya menjadi seperti di
-bawah ini
+    pada view dengan nama user_ubah.blade.php dan buat scriptnya menjadi seperti di
+    bawah ini
+
 ```php
 <!DOCTYPE html>
 <html lang="en">
@@ -830,14 +892,18 @@ bawah ini
 
 </html>
 ```
+
 12. Tambahkan script pada routes dengan nama file web.php. Tambahkan seperti gambar di
-bawah ini
+    bawah ini
+
 ```php
 Route::get('/user/ubah/{id}', [UserController::class, 'ubah']);
 ```
+
 13. Tambahkan script pada controller dengan nama file UserController.php. Tambahkan
-script dalam class dan buat method baru dengan nama ubah dan diletakan di bawah
-method tambah_simpan seperti gambar di bawah ini
+    script dalam class dan buat method baru dengan nama ubah dan diletakan di bawah
+    method tambah_simpan seperti gambar di bawah ini
+
 ```php
 <?php
 
@@ -879,21 +945,26 @@ class UserController extends Controller
     }
 }
 ```
+
 14. Simpan kode program Langkah 11 sd 13. Kemudian jalankan pada browser dan klik
-link “Ubah” amati apa yang terjadi dan beri penjelasan dalam laporan <br>
-![alt text](/public/ss/u.png)<br>
-> Yang terjadi ketika klik ubah adalah kita dipindahkan ke view ubah yang memiliki form untuk mengubah data user
+    link “Ubah” amati apa yang terjadi dan beri penjelasan dalam laporan <br>
+    ![alt text](/public/ss/u.png)<br>
+
+    > Yang terjadi ketika klik ubah adalah kita dipindahkan ke view ubah yang memiliki form untuk mengubah data user
 
 15. Tambahkan script pada routes dengan nama file web.php. Tambahkan seperti gambar di
-bawah ini
+    bawah ini
+
 ```php
 Route::put('/user/ubah_simpan/{id}', [UserController::class, 'ubah_simpan']);
 ```
->di praktikum menggunakan get tetapi di view menggunakan put jadi saya ganti put agar tidak error
+
+> di praktikum menggunakan get tetapi di view menggunakan put jadi saya ganti put agar tidak error
 
 16. Tambahkan script pada controller dengan nama file UserController.php. Tambahkan
-script dalam class dan buat method baru dengan nama ubah_simpan dan diletakan di
-bawah method ubah seperti gambar di bawah ini
+    script dalam class dan buat method baru dengan nama ubah_simpan dan diletakan di
+    bawah method ubah seperti gambar di bawah ini
+
 ```php
 <?php
 
@@ -950,22 +1021,25 @@ class UserController extends Controller
 ```
 
 17. Simpan kode program Langkah 15 dan 16. Kemudian jalankan link
-localhost:8000/user/ubah/1 atau localhost/PWL_POS/public/user/ubah/1 pada
-browser dan ubah input formnya dan klik tombol ubah, kemudian amati apa yang terjadi
-dan beri penjelasan dalam laporan <br>
-![alt text](/public/ss/ubah.png)<br>
-![alt text](/public/ss/ubh.png)<br>
-> Hasilnya sesuai dengan harapan yaitu manager24 berganti menjadi manager25
+    localhost:8000/user/ubah/1 atau localhost/PWL_POS/public/user/ubah/1 pada
+    browser dan ubah input formnya dan klik tombol ubah, kemudian amati apa yang terjadi
+    dan beri penjelasan dalam laporan <br>
+    ![alt text](/public/ss/ubah.png)<br>
+    ![alt text](/public/ss/ubh.png)<br>
+
+    > Hasilnya sesuai dengan harapan yaitu manager24 berganti menjadi manager25
 
 18. Berikut untuk langkah delete . Tambahkan script pada routes dengan nama file web.php.
-Tambahkan seperti gambar di bawah ini <br>
+    Tambahkan seperti gambar di bawah ini <br>
+
 ```php
 Route::get('/user/hapus/{id}', [UserController::class, 'hapus']);
 ```
 
 19. Tambahkan script pada controller dengan nama file UserController.php. Tambahkan
-script dalam class dan buat method baru dengan nama hapus dan diletakan di bawah
-method ubah_simpan seperti gambar di bawah ini
+    script dalam class dan buat method baru dengan nama hapus dan diletakan di bawah
+    method ubah_simpan seperti gambar di bawah ini
+
 ```php
     function hapus($id) {
         $user = User::find($id);
@@ -976,14 +1050,16 @@ method ubah_simpan seperti gambar di bawah ini
 ```
 
 20. Simpan kode program Langkah 18 dan 19. Kemudian jalankan pada browser dan klik
-tombol hapus, kemudian amati apa yang terjadi dan beri penjelasan dalam laporan<br>
-![alt text](/public/ss/ubh.png)<br>
-![alt text](/public/ss/mng.png)<br>
->Hasilnya sesuai harapan yaitu manager25 telah berhasil dihapus
+    tombol hapus, kemudian amati apa yang terjadi dan beri penjelasan dalam laporan<br>
+    ![alt text](/public/ss/ubh.png)<br>
+    ![alt text](/public/ss/mng.png)<br>
+    > Hasilnya sesuai harapan yaitu manager25 telah berhasil dihapus
 
 ### Praktikum 2.7 – Relationships
+
 1. Buka file model pada UserModel.php dan tambahkan scritpnya menjadi seperti di bawah
-ini
+   ini
+
 ```php
 <?php
 
@@ -1007,8 +1083,10 @@ class User extends Model
     }
 }
 ```
+
 2. Buka file controller pada UserController.php dan ubah method script menjadi seperti
-di bawah ini
+   di bawah ini
+
 ```php
 function index()
     {
@@ -1018,9 +1096,10 @@ function index()
 
     }
 ```
+
 3. Simpan kode program Langkah 2. Kemudian jalankan link pada browser, kemudian
-amati apa yang terjadi dan beri penjelasan dalam laporan<br>
-![alt text](/public/ss/1.png)<br>
-> Pada langkah ini akan ditampilkan hubungan one to one antara UserModel dengan Model Level menggunakan dd(dump and die). Terdapat 11 item yang menunjukkan hubungan kedua model.
+   amati apa yang terjadi dan beri penjelasan dalam laporan<br>
+   ![alt text](/public/ss/1.png)<br>
+    > Pada langkah ini akan ditampilkan hubungan one to one antara UserModel dengan Model Level menggunakan dd(dump and die). Terdapat 11 item yang menunjukkan hubungan kedua model.
 
 ![alt text](/public/ss/ss1.png)<br>
