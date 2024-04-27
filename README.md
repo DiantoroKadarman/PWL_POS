@@ -1,68 +1,181 @@
-# Jawaban Pertanyaan Jobsheet 3
+# JOBSHEET 07 - LARAVEL STARTER CODE
 
-### 1. Pada Praktikum 1 - Tahap 5, apakah fungsi dari APP_KEY pada file setting .env Laravel?<br>
+> Nama : Syahrul Bhudi Ferdiansyah <br>
+> NIM : 2241720167 <br>
+> Kelas : TI-2F
 
--   Jawab : APP_KEY pada file setting .env Laravel digunakan sebagai kunci enkripsi dan penandatanganan data yang sensitif, seperti sesi pengguna. Fungsi ini penting untuk keamanan aplikasi.<br>
+## A. Layouting AdminLTE
 
-### 2. Pada Praktikum 1, bagaimana kita men-generate nilai untuk APP_KEY?<br>
+- Hasil akhir template.blade.php<br>
+  ![img.png](public/ss/js7(1).png)<br>
 
--   Jawab : nilai untuk APP_KEY dapat di-generate menggunakan perintah artisan php artisan key:generate.<br>
+## B. Penerapan Layouting
 
-### 3. Pada Praktikum 2.1 - Tahap 1, secara default Laravel memiliki berapa file migrasi?
+- Welcome Controller
 
-dan untuk apa saja file migrasi tersebut?<br>
+```php
+<?php
 
--   Jawab : secara default Laravel memiliki dua file migrasi, yaitu create_users_table.php dan create_password_resets_table.php. File migrasi ini digunakan untuk membuat tabel pengguna dan tabel reset password.<br>
+namespace App\Http\Controllers;
 
-### 4. Secara default, file migrasi terdapat kode $table->timestamps();, apa tujuan/output
+use Illuminate\Http\Request;
 
-dari fungsi tersebut?<br>
+class WelcomeController extends Controller
+{
+    function index()
+    {
+        $breadcrumb = (object) [
+            'title' => 'Selamat Datang',
+            'list' => ['Home', 'Welcome']
+        ];
 
--   Jawab : Kode $table->timestamps(); pada file migrasi menambahkan dua kolom, yaitu created_at dan updated_at, yang secara otomatis akan diisi waktu ketika record dibuat dan diupdate.<br>
+        $activeMenu = 'dashboard';
 
-### 5. Pada File Migrasi, terdapat fungsi $table->id(); Tipe data apa yang dihasilkan dari
+        return view('welcome', ['breadcrumb' => $breadcrumb, 'activeMenu' => $activeMenu]);
+	}
+}
+```
 
-fungsi tersebut?<br>
+- Welcome.blade
 
--   Jawab : Fungsi $table->id(); pada file migrasi menghasilkan tipe data kolom primary key yang bertipe big integer dengan sifat auto-increment.<br>
+```php
+@extends('layouts.template')
 
-### 6. Apa bedanya hasil migrasi pada table m_level, antara menggunakan $table->id();
+@section('content')
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Halo, apakabar!!!</h3>
+            <div class="card-tools"></div>
+        </div>
+        <div class="card-body">
+            Selamat datang semua, ini adalah halaman utama dari aplikasi ini
+        </div>
+    </div>
+@endsection
+```
 
-dengan menggunakan $table->id('level_id'); ?<br>
+- Modifikasi breadcrumb blade
 
--   Jawab : Hasil migrasi pada tabel m_level menggunakan $table->id(); dan $table->id('level_id'); tidak berbeda secara substansial. Perbedaan terletak pada penamaan kolom primary key, di mana menggunakan $table->id('level_id'); memberikan nama kolom primary key khusus.<br>
+```php
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>{{$breadcrumb->title}}</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    @foreach($breadcrumb->list as $key => $value)
+                        @if($key == count($breadcrumb->list - 1))
+                            <li class="breadcrumb-item active">{{$value}}</li>
+                        @else
+                            <li class="breadcrumb-item">{{$value}}</li>
+                        @endif
+                    @endforeach
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+```
 
-### 7. Pada migration, Fungsi ->unique() digunakan untuk apa?<br>
+- Hasil <br>
+  ![img.png](public/ss/js7(2).png)<br>
 
--   Jawab : Fungsi ->unique() pada migration digunakan untuk menentukan bahwa nilai pada kolom tersebut harus unik di dalam tabel.<br>
+## C. Implementasi jQuery Datatable
 
-### 8. Pada Praktikum 2.2 - Tahap 2, kenapa kolom level_id pada tabel m_user
+- Modifikasi Route
 
-menggunakan $tabel->unsignedBigInteger('level_id'), sedangkan kolom level_id
-pada tabel m_level menggunakan $tabel->id('level_id') ?<br>
+```php
+Route::prefix('/user')->group(function () {
+    Route::get('/', [UserController::class, 'index']);
+    Route::get('/list', [UserController::class, 'list']);
+    Route::get('/create', [UserController::class, 'create']);
+    Route::post('/', [UserController::class, 'store']);
+    Route::get('/{id}', [UserController::class, 'show']);
+    Route::put('/{id}', [UserController::class, 'update']);
+    Route::delete('/{id}', [UserController::class, 'destroy']);
+});
+```
 
--   Jawab : perbedaan penggunaan $tabel->unsignedBigInteger('level_id') dan $tabel->id('level_id') terletak pada jenis kolom yang dihasilkan. Yang pertama menghasilkan kolom big integer yang tidak auto-increment, sementara yang kedua menghasilkan primary key dengan nama kolom 'level_id'.<br>
+- Modifikasi UserController
 
-### 9. Pada Praktikum 3 - Tahap 6, apa tujuan dari Class Hash? dan apa maksud dari kode
+```php
+function index()
+    {
+        $breadcrumb = (object)[
+            'title' => 'Daftar User',
+            'list' => ['Home', 'User']
+        ];
 
-program Hash::make('1234');?<br>
+        $page = (object)[
+            'title' => 'Daftar user yang terdaftar dalam sistem'
+        ];
 
--   Jawab : Class Hash pada Laravel digunakan untuk melakukan hashing, yaitu mengacak nilai teks, seperti password, untuk meningkatkan keamanan. Kode program Hash::make('1234'); digunakan untuk menghasilkan hash dari string '1234'.<br>
+        $activeMenu = 'user';
 
-### 10. Pada Praktikum 4 - Tahap 3/5/7, pada query builder terdapat tanda tanya (?), apa
+        return view('user.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
+    }
+```
 
-kegunaan dari tanda tanya (?) tersebut?<br>
+- Hasil<br>
+  ![img.png](public/ss/js(7).3.1.png)
+- Create <br>
+  ![img.png](public/ss/js7.3.2.png)
+- Hasil create<br>
+  ![img.png](public/ss/js7.3.3.png)
 
--   Jawab : tanda tanya (?) pada query builder digunakan sebagai placeholder untuk parameter yang akan di-bind nanti. Ini membantu mencegah SQL injection dan memungkinkan penggunaan nilai yang aman dalam query.<br>
+> Disini saya menambahkan pelanggan12 dengan nama Ahmad Soerjo dan hasilnya sukses tersimpan di database
 
-### 11. Pada Praktikum 6 - Tahap 3, apa tujuan penulisan kode protected $table =
+- Hasil show<br>
+  ![img.png](public/ss/js7.3.4.png)
 
-‘m_user’; dan protected $primaryKey = ‘user_id’; ?<br>
+> Hasilnya sesuai, data user ditampilkan dengan benar
 
--   Jawab : kode protected $table = 'm_user'; dan protected $primaryKey = 'user_id'; digunakan untuk menentukan nama tabel dan primary key yang digunakan oleh model tersebut.<br>
+- Hasil edit<br>
+  ![img.png](public/ss/js7.3.6.png)<br>
+  ![img.png](public/ss/js7.3.7.png)<br>
 
-### 12. Menurut kalian, lebih mudah menggunakan mana dalam melakukan operasi CRUD ke
+> Disini saya mengganti nama dari pelanggan12 menjadi Ahmad Soerjo Raharjo dan berhasil
 
-database (DB Facade / Query Builder / Eloquent ORM) ? jelaskan<br>
+- Hasil delete<br>
+  ![img.png](public/ss/js7.3.8.png)<br>
 
--   Jawab : Pilihan antara DB Facade, Query Builder, dan Eloquent ORM tergantung pada kebutuhan dan preferensi pengembang. Eloquent ORM sering dianggap lebih mudah dan ekspresif karena memanfaatkan model dan relasi, sementara DB Facade dan Query Builder memberikan lebih banyak kontrol langsung atas kueri SQL. Pilihan tergantung pada kompleksitas proyek dan kebutuhan pengembangan.<br>
+> Disini saya mencoba menghapus manager 56<br>
+
+<br>![img.png](public/ss/js7.3.9.png)<br>
+> Hasilnya user manager 56 berhasil di hapus
+
+## D. Data Searching and Filtering
+
+- Hasil filtering <br>
+  ![img.png](public/ss/js7.3.10.png)
+
+## E. Pertanyaan
+
+1. Apa perbedaan frontend template dengan backend template?
+
+> Frontend template biasanya digunakan untuk mengatur tampilan dan interaksi pengguna di sisi klien (di browser),
+> seperti HTML, CSS, dan JavaScript yang bertanggung jawab untuk membangun tampilan yang dapat dilihat dan diinteraksi
+> oleh pengguna. Sementara itu, backend template digunakan untuk mengatur logika dan fungsi yang terjadi di sisi server,
+> seperti mengelola database, otentikasi pengguna, dan routing.
+
+2. Apakah layouting itu penting dalam membangun sebuah website?
+
+> Layouting sangat penting dalam membangun sebuah website karena layout adalah kerangka dasar dari tampilan halaman web.
+> Layout yang baik memastikan bahwa konten disusun secara terstruktur, mudah dinavigasi, dan estetik.
+
+3. Jelaskan fungsi dari komponen laravel blade berikut : @include(), @extend(), @section(), @push(), @yield(), dan
+   @stack()
+
+> @include('view'): Digunakan untuk menyisipkan konten dari file view lain ke dalam view saat ini.<br>
+> @extend('layout'): Digunakan untuk mengambil layout utama yang akan digunakan oleh view saat ini.<br>
+> @section('content'): Digunakan untuk menentukan bagian konten dari sebuah layout.<br>
+> @push('scripts'): Digunakan untuk menambahkan script baru ke dalam sebuah stack, biasanya digunakan untuk menambahkan script pada bagian bawah halaman. <br>
+> @yield('section'): Digunakan untuk menampilkan konten dari sebuah section yang telah didefinisikan di layout.<br>
+> @stack('scripts'): Digunakan untuk menampilkan stack tertentu yang telah didefinisikan di layout.<br>
+
+4. Apa fungsi dan tujuan dari variable $activeMenu ?
+
+> variabel tersebut digunakan untuk menentukan style yang akan digunakan di bagian sidebar atau dalam kata lain
+> digunakan untuk menampilkan menu yang sedang di pilih saat ini 

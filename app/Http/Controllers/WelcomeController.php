@@ -1,9 +1,12 @@
 <?php
+
 namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
 {
-    public function index()
+    function index()
     {
         $breadcrumb = (object) [
             'title' => 'Selamat Datang',
@@ -13,5 +16,5 @@ class WelcomeController extends Controller
         $activeMenu = 'dashboard';
 
         return view('welcome', ['breadcrumb' => $breadcrumb, 'activeMenu' => $activeMenu]);
-    }
+	}
 }
