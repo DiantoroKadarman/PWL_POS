@@ -19,12 +19,12 @@
                     <td>{{ $d->username }}</td>
                     <td>{{ $d->nama }}</td>
                     <td>{{ $d->level_id }}</td>
-                    <td><a href="/user/ubah/{{ $d->user_id }}">Ubah</a> | 
-                        <a href="/user/hapus/{{ $d->user_id }}">Hapus</a>
+                    <td><a href="user/ubah/{{ $d->user_id }}">Ubah</a> | 
+                        <a href="user/hapus/{{ $d->user_id }}">Hapus</a>
                     </td>
                 </tr>
             @endforeach
         </table>
-        <h3><a href="/user/tambah/{{ $d->user_id }}">Tambah</a></h3>
+        <h3><a href="user/tambah">Tambah</a></h3>
     </body>
 </html>
