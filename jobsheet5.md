@@ -1,7 +1,8 @@
 # Jawaban TUGAS JOBSHEET 5 - Blade View, Web Templating(AdminLTE), Datatables
-> Nama : Syahrul Bhudi Ferdiansyah <br>
-> NIM  : 2241720167 <br>
-> Kelas : TI-2F
+
+Diantoro Kadarman <br>
+2241720084 <br>
+TI-2F
 
 ## 1. Tambahkan button Add di halam manage kategori, yang mengarah ke create kategori baru
 ![alt text](/public/ss/js51.png)

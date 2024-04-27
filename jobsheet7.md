@@ -1,8 +1,8 @@
 # JOBSHEET 07 - LARAVEL STARTER CODE
 
-> Nama : Syahrul Bhudi Ferdiansyah <br>
-> NIM : 2241720167 <br>
-> Kelas : TI-2F
+Diantoro Kadarman <br>
+2241720084 <br>
+TI-2F
 
 ## A. Layouting AdminLTE
 
