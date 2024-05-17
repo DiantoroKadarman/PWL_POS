@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\UserModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -83,7 +83,7 @@ class AuthController extends Controller
         $request['level_id'] = '2';
         $request['password'] = Hash::make($request->password);
 
-        User::create($request->all());
+        UserModel::create($request->all());
 
         //        redirect to login form
         return redirect()->route('login');

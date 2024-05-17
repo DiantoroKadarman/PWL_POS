@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-// use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Auth\Authenticatable as AuthenticableTrait;
+use Illuminate\Foundation\Auth\User as UserAuthenticate;
 
-class UserModel extends Model
+
+class UserModel extends UserAuthenticate
 {
     use HasFactory;
 
@@ -20,9 +23,9 @@ class UserModel extends Model
      */
     protected $fillable = ['level_id', 'username', 'nama', 'password'];
 
-    // public function level(): BelongsTo 
-    // {
-    //     return $this->belongsTo(LevelModel::class);
-    // }
+    function level(): BelongsTo
+    {
+        return $this->belongsTo(Level::class, 'level_id', 'level_id');
+    }
 
 }
